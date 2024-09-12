@@ -11,7 +11,7 @@ package arrays.problems;
  * Output: 5
  * Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
  */
-public class Leetcode121 {
+public class LeetCode121 {
 
     public static int maxProfit(int[] prices) {
 

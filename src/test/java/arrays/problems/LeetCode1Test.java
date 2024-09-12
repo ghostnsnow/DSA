@@ -26,4 +26,14 @@ class LeetCode1Test {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void twoSumCase3() {
+
+        int[] expected = {0,1};
+        int[] input = {3,3};
+        int[] actual = LeetCode1.twoSum(input, 6);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
