@@ -1,11 +1,19 @@
 package linkedlist.base;
 
-public class GhostSinglyLinkedList<T> {
+import java.util.Iterator;
+import java.util.Objects;
+
+public class GhostSinglyLinkedList<T>{
 
     private Node<T> head;
     private Node<T> tail;
 
-    class Node<T> {
+    //@Override
+    public Iterator<T> iterator() {//Implementing this only to use Assertions.assertIterableEquals. Don't use this, or override this.
+        return null;
+    }
+
+    public class Node<T> {
 
         T value;
         Node<T> next;
@@ -13,6 +21,51 @@ public class GhostSinglyLinkedList<T> {
         public Node(T value) {
             this.value = value;
         }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node<?> node = (Node<?>) o;
+            return Objects.equals(value, node.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
+        }
+    }
+
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public void setHead(Node<T> head) {
+        this.head = head;
+    }
+
+    public Node<T> getTail() {
+        return tail;
+    }
+
+    public void setTail(Node<T> tail) {
+        this.tail = tail;
     }
 
     public GhostSinglyLinkedList() {
@@ -234,6 +287,7 @@ public class GhostSinglyLinkedList<T> {
             System.out.println("The linkedlist is empty");
         }
     }
+
 
     public static void main(String[] args) {
 
