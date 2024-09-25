@@ -124,7 +124,7 @@ public class BinaryTreeLinkedList<T> {
 
         Queue<BinaryTreeNode<T>> queue = new LinkedList<BinaryTreeNode<T>>();
         BinaryTreeNode<T> currNode = null, prevNode = null;
-        T deepestNodeVal;
+        T deepestNodeVal = null;
 
         if (root == null) return null;
 
@@ -144,21 +144,26 @@ public class BinaryTreeLinkedList<T> {
 
                     deepestNodeVal = prevNode.right.data;
                     prevNode.right = null;
+                    break;
                 } else if (prevNode.left != null) {
 
                     deepestNodeVal = prevNode.left.data;
                     prevNode.left = null;
+                    break;
                 }
             } else if (currNode.right == null) {
 
                 deepestNodeVal = currNode.left.data;
                 currNode.left = null;
+                break;
             } else {
 
                 queue.offer(currNode.left);
                 queue.offer(currNode.right);
             }
         }
+
+        return deepestNodeVal;
     }
     public void deleteElementInBT(T valueToDelete) {
 
@@ -181,6 +186,11 @@ public class BinaryTreeLinkedList<T> {
 
             System.out.println("Element not found");
         }
+    }
+
+    public void deleteBT() {
+
+        root = null;
     }
 
     /**
@@ -259,53 +269,5 @@ class BinaryTreeNode<T> {
 
     public void visit() {
         System.out.print(data + " ");
-    }
-}
-
-class MainTest {
-
-    public static void main(String[] args) {
-
-        BinaryTreeLinkedList<String> tree = new BinaryTreeLinkedList<>();
-
-        BinaryTreeNode<String> N1 = new BinaryTreeNode<>("N1");
-        BinaryTreeNode<String> N2 = new BinaryTreeNode<>("N2");
-        BinaryTreeNode<String> N3 = new BinaryTreeNode<>("N3");
-        BinaryTreeNode<String> N4 = new BinaryTreeNode<>("N4");
-        BinaryTreeNode<String> N5 = new BinaryTreeNode<>("N5");
-        BinaryTreeNode<String> N6 = new BinaryTreeNode<>("N6");
-        BinaryTreeNode<String> N7 = new BinaryTreeNode<>("N7");
-        BinaryTreeNode<String> N8 = new BinaryTreeNode<>("N8");
-        BinaryTreeNode<String> N9 = new BinaryTreeNode<>("N9");
-
-
-        N1.left = N2;
-        N1.right = N3;
-
-        N2.left = N4;
-        N2.right = N5;
-
-        N3.left = N6;
-        N3.right = N7;
-
-        N4.left = N8;
-        N4.right = N9;
-
-        tree.root = N1;
-
-        /*tree.preOrderTraversal(N1);
-        System.out.println("==============");
-        tree.inOrderTraversal(N1);
-        System.out.println("==============");
-        tree.postOrderTraversal(N1);
-        System.out.println("==============");
-        tree.printLevelOrder(N1);
-        System.out.println("==============");
-        tree.levelOrderTraversal(N1);
-        System.out.println("==============");
-        System.out.println(tree.searchElementInBT("N9", N1));*/
-
-        tree.insertElementInBT("N10");
-        tree.levelOrderTraversal(N1);
     }
 }
